@@ -1,7 +1,6 @@
-# Virtual Speeding Tool (Prototype) 
+# Time Complexity Analyser 
 
-This Repository is for conducting tests on weather its possible to do “virtual speeding” on code in a single threaded world.
-Making use of the truffle API to insert instrumentation to slow down and “speed up” code.
+This Repository is for conducting tests on weather its possible to find the time COmplexity of a given java program
 
 
 Some CMD that can be usefull
