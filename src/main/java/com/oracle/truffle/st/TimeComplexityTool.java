@@ -9,6 +9,7 @@ import com.oracle.truffle.api.instrumentation.Instrumenter;
 import com.oracle.truffle.api.instrumentation.SourceFilter;
 import com.oracle.truffle.api.instrumentation.SourceSectionFilter;
 import com.oracle.truffle.api.instrumentation.StandardTags.StatementTag;
+import com.oracle.truffle.api.instrumentation.StandardTags.ReadVariableTag;
 import com.oracle.truffle.api.instrumentation.TruffleInstrument;
 import com.oracle.truffle.api.instrumentation.TruffleInstrument.Registration;
 import com.oracle.truffle.api.source.Source;
@@ -35,10 +36,11 @@ public final class TimeComplexityTool extends TruffleInstrument {
         SourceFilter sf = SourceFilter.newBuilder().sourceIs((Source s) -> checkPath(s)).build();
 
         SourceSectionFilter.Builder builder = SourceSectionFilter.newBuilder();
-        SourceSectionFilter filter = builder.sourceFilter(sf).tagIs(StatementTag.class).build();        
+        SourceSectionFilter sourcefilter = builder.sourceFilter(sf).tagIs(StatementTag.class).build(); 
+        SourceSectionFilter inputfilter = builder.sourceFilter(sf).tagIs(StatementTag.class).build();       
         Instrumenter instrumenter = env.getInstrumenter();
 
-        instrumenter.attachExecutionEventFactory(filter,eventFactory = new LineEventFactory(env));
+        instrumenter.attachExecutionEventFactory(sourcefilter,inputfilter, eventFactory = new LineEventFactory(env));
 
 
         
