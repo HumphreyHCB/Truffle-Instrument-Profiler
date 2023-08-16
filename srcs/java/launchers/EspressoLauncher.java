@@ -18,7 +18,7 @@ public class EspressoLauncher {
 
     public void LaunchFileWithTool(String javaProgram) {
             try(Context ctx = Context.newBuilder("java", "js")
-            .option("TimeComplexityTool", "true")
+            .option("TruffleInstrumentProfiler", "true")
             .option("java.Classpath", "classes/")
             .option("java.MultiThreaded", "true")
             .option("engine.MultiTier", "true")

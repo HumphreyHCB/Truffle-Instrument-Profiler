@@ -56,7 +56,7 @@ shift
 "$JAVA_HOME/bin/$LAUNCHER" \
     --jvm \
     --vm.Dtruffle.class.path.append=target/TCtool.jar \
-    --TimeComplexityTool \
+    --TruffleInstrumentProfiler \
     "$@"
 #        --jvm \
 #    --Virtually-Speeding-Tool.Percentage-of-speedUp=50 \

@@ -1,7 +1,15 @@
-# Time Complexity Analyser 
+#  Truffle Instrument Profiler
 
-This Repository is for conducting tests on weather its possible to find the time COmplexity of a given java program
 
+This Repository is for conducting tests on graalVM,  to test Instrument Profiler and how the deal with dynamic compilation
+
+## How to Use
+
+```
+mvn clean package
+
+
+```
 
 Some CMD that can be usefull
 
