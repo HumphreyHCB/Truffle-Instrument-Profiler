@@ -3,7 +3,11 @@ package code;
 import tool.Benchmark;
 import java.util.Random;
 
-public class JavaExample extends Benchmark {
+public class JavaExample {
+  public static void main(String[] args) {
+    System.out.println("Hello");
+    myprint();
+  }
 
     public static void myprint() {
         System.out.println("Hello");
@@ -18,17 +22,6 @@ public class JavaExample extends Benchmark {
         Random rand = new Random();
         int z = x + y;
         System.out.println(z - rand.nextInt(5));
-    }
-    @Override
-    public Object benchmark() {
-        testMaths();
-        myprint();
-      return true;
-    }
-  
-    @Override
-    public boolean verifyResult(final Object result) {
-      return true;
     }
     
 }

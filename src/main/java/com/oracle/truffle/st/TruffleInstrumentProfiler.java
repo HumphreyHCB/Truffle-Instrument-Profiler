@@ -12,6 +12,9 @@ import com.oracle.truffle.api.instrumentation.SourceSectionFilter;
 import com.oracle.truffle.api.instrumentation.StandardTags.StatementTag;
 import com.oracle.truffle.api.instrumentation.StandardTags.ReadVariableTag;
 import com.oracle.truffle.api.instrumentation.StandardTags.CallTag;
+import com.oracle.truffle.api.instrumentation.StandardTags.ExpressionTag;
+import com.oracle.truffle.api.instrumentation.StandardTags.RootBodyTag;
+import com.oracle.truffle.api.instrumentation.StandardTags.RootTag;
 import com.oracle.truffle.api.instrumentation.TruffleInstrument;
 import com.oracle.truffle.api.instrumentation.TruffleInstrument.Registration;
 import com.oracle.truffle.api.source.Source;
@@ -37,17 +40,16 @@ public final class TruffleInstrumentProfiler extends TruffleInstrument {
         SourceFilter sf = SourceFilter.newBuilder().sourceIs((Source s) -> checkPath(s)).build();
 
         SourceSectionFilter.Builder builder = SourceSectionFilter.newBuilder();
-        SourceSectionFilter sourcefilter = builder.sourceFilter(sf).tagIs(CallTag.class).build(); 
-        SourceSectionFilter inputfilter = builder.sourceFilter(sf).tagIs(CallTag.class).build();       
+        SourceSectionFilter sourcefilter = builder.sourceFilter(sf).tagIs(RootTag.class).build();      
         Instrumenter instrumenter = env.getInstrumenter();
 
-        instrumenter.attachExecutionEventFactory(sourcefilter,inputfilter, new EventFactory(env));
+        instrumenter.attachExecutionEventFactory(sourcefilter, new EventFactory(env));
 
 
         
     }
 
-    public boolean checkPath(Source s) {   
+    public boolean checkPath(Source s) { 
         if (s.getPath() == null) {
             return s.getURI().toString().contains("code/");
         }

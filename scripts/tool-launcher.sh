@@ -7,4 +7,4 @@ JARS="${PROJECT_ROOT_DIR}/target/jars/*"
 
 java --class-path "$JAVA_CLASS_PATH_DIR":"$JARS":. \
     "-Dtruffle.class.path.append=${SIMPLETOOL_JAR}" \
-    launchers.EspressoLauncher sortingtest
+    launchers.EspressoLauncher JavaExample

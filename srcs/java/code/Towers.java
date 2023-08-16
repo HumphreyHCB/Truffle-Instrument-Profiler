@@ -86,6 +86,7 @@ public final class Towers extends Benchmark {
     }
   }
 
+  
   @Override
   public Object benchmark() {
     piles = new TowersDisk[3];

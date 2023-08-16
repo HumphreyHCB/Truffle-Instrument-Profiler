@@ -14,13 +14,13 @@ class EventFactory implements ExecutionEventNodeFactory {
 
 
     EventFactory(final Env env) {
-
+        System.out.println("EventFactory made");
         
     }
 
 
     public ExecutionEventNode create(final EventContext ec) {
-
+        System.out.println("RootNode : " + ec.getInstrumentedNode().getRootNode().toString());
         return new Probe();
         
     }

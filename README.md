@@ -7,7 +7,8 @@ This Repository is for conducting tests on graalVM,  to test Instrument Profiler
 
 ```
 mvn clean package
-
+bash scripts/build-java.sh
+bash scripts/tool-launcher.sh
 
 ```
 
