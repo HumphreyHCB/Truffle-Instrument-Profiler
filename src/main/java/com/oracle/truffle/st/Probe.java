@@ -6,15 +6,21 @@ import com.oracle.truffle.api.instrumentation.ExecutionEventNode;
 
 public class Probe extends ExecutionEventNode{
 
-
-    public Probe()
+    private Timestamp ts;
+    public Probe(Timestamp ts)
     {
-
+        this.ts = ts;
     }
 
     @Override
     public void onEnter(final VirtualFrame frame) {
-        //System.out.println("In call tag");
+        ts.StartTime = System.nanoTime();
+    }
+
+
+    @Override
+    protected void onReturnValue(VirtualFrame frame, Object result) {
+        ts.EndTime = System.nanoTime();
     }
 
 

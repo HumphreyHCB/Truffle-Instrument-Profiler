@@ -12,16 +12,19 @@ import com.oracle.truffle.api.instrumentation.TruffleInstrument.Env;
 
 class EventFactory implements ExecutionEventNodeFactory {
 
+    private List<Timestamp> Timings;
 
-    EventFactory(final Env env) {
-        System.out.println("EventFactory made");
+    EventFactory(final Env env, List<Timestamp> Timings) {
+        this.Timings = Timings;
         
     }
 
 
     public ExecutionEventNode create(final EventContext ec) {
-        System.out.println("RootNode : " + ec.getInstrumentedNode().getRootNode().toString());
-        return new Probe();
+        
+        Timestamp ts = new Timestamp(ec.getInstrumentedNode().getRootNode().toString());
+        Timings.add(ts);
+        return new Probe(ts);
         
     }
 

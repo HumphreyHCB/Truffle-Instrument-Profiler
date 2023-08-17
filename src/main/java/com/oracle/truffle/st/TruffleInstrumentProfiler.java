@@ -1,5 +1,8 @@
 package com.oracle.truffle.st;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.graalvm.options.OptionCategory;
 import org.graalvm.options.OptionDescriptors;
 import org.graalvm.options.OptionKey;
@@ -29,7 +32,7 @@ public final class TruffleInstrumentProfiler extends TruffleInstrument {
 
     public static final String ID = "TruffleInstrumentProfiler";
 
-    
+    private List<Timestamp> Timings = new ArrayList<Timestamp>();
     @Override
     protected void onCreate(final Env env) {
 
@@ -43,7 +46,7 @@ public final class TruffleInstrumentProfiler extends TruffleInstrument {
         SourceSectionFilter sourcefilter = builder.sourceFilter(sf).tagIs(RootTag.class).build();      
         Instrumenter instrumenter = env.getInstrumenter();
 
-        instrumenter.attachExecutionEventFactory(sourcefilter, new EventFactory(env));
+        instrumenter.attachExecutionEventFactory(sourcefilter, new EventFactory(env, Timings));
 
 
         
@@ -60,7 +63,9 @@ public final class TruffleInstrumentProfiler extends TruffleInstrument {
 
     @Override
     protected void onDispose(Env env) {       
-
+        for (Timestamp timestamp : Timings) {
+            System.out.println(timestamp.getMethodName() + " : " + timestamp.getTime());
+        }
         System.out.println("Custom Instrument Disposed"); 
     }
 
