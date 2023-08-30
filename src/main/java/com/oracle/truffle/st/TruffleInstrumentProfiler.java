@@ -64,7 +64,8 @@ public final class TruffleInstrumentProfiler extends TruffleInstrument {
     @Override
     protected void onDispose(Env env) {       
         for (Timestamp timestamp : Timings) {
-            System.out.println(timestamp.getMethodName() + " : " + timestamp.getTime());
+            //System.out.println(timestamp.getMethodName() + " : " + timestamp.getTime());
+            System.out.println(timestamp.getTime() + " : " + timestamp.getMethodName());
         }
         System.out.println("Custom Instrument Disposed"); 
     }
